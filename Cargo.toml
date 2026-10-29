@@ -1,0 +1,9 @@
+[package]
+name = "sigmaos-common"
+version = "0.1.0"
+edition = "2021"
+authors = ["SigmaOS Project"]
+description = "SigmaOS Common utilities, versioning, result types, ID generation, and configuration"
+license = "GPL-3.0"
+
+[dependencies]

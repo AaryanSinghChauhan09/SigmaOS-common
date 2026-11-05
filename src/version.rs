@@ -32,12 +32,23 @@ impl fmt::Display for Version {
 impl FromStr for Version {
     type Err = ParseVersionError;
     fn from_str(s: &str) -> Result<Self, Self::Err> {
+        // Follows KISS principle: simple, straightforward parsing
+        // Follows Fail-Fast: early validation
         let parts: Vec<&str> = s.trim().split('.').collect();
         if parts.len() != 3 {
             return Err(ParseVersionError(s.to_string()));
         }
-        let parse = |p: &str| p.parse::<u32>().map_err(|_| ParseVersionError(s.to_string()));
-        Ok(Self::new(parse(parts[0])?, parse(parts[1])?, parse(parts[2])?))
+        
+        // Follows DRY principle: use helper for parsing
+        let parse_part = |p: &str| -> Result<u32, ParseVersionError> {
+            p.parse::<u32>().map_err(|_| ParseVersionError(s.to_string()))
+        };
+        
+        Ok(Self::new(
+            parse_part(parts[0])?,
+            parse_part(parts[1])?,
+            parse_part(parts[2])?,
+        ))
     }
 }
 

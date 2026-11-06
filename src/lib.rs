@@ -7,3 +7,6 @@ pub mod version;
 pub mod result;
 pub mod config;
 pub mod id;
+
+pub mod error;
+pub mod service;

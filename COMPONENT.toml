@@ -1,6 +1,6 @@
 [component]
 name = "SigmaOS-common"
-description = "SigmaOS subsystem component for common"
+description = "Shared helpers + policy kit used by every applet"
 version = "0.1.0"
 tier = 5
 
